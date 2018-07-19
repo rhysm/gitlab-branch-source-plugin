@@ -38,7 +38,7 @@ public class GitLabSCMPushEvent extends GitLabSCMHeadEvent<PushHook> {
 
     @Override
     protected boolean isMatch(@Nonnull GitLabSCMSource source) {
-        return super.isMatch(source) && getPayload().getProjectId().equals(source.getProjectId());
+        return super.isMatch(source) && getPayload().getProjectId().equals(source.getProjectId()) && source.getSourceSettings().getBranchMonitorStrategy().getMonitored();
     }
 
     @Override
