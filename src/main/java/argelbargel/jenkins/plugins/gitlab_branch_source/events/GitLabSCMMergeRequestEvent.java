@@ -60,8 +60,13 @@ public final class GitLabSCMMergeRequestEvent extends GitLabSCMHeadEvent<MergeRe
         if (!super.isMatch(source) || !isOrigin(source, getAttributes().getTargetProjectId())) {
             return false;
         }
-
         boolean isOrigin = isOrigin(source, getAttributes().getSourceProjectId());
+
+        boolean isIgnoreWorkInProgress = (isOrigin && source.getSourceSettings().getOriginMonitorStrategy().getIgnoreWorkInProgress()) || (!isOrigin && source.getSourceSettings().getForksMonitorStrategy().getIgnoreWorkInProgress());
+        if (isIgnoreWorkInProgress && getAttributes().getWorkInProgress()) {
+            return false;
+        }
+
         return ((isOrigin && source.getSourceSettings().getOriginMonitorStrategy().getMonitored()) || (!isOrigin && source.getSourceSettings().getForksMonitorStrategy().getMonitored()));
     }
 
