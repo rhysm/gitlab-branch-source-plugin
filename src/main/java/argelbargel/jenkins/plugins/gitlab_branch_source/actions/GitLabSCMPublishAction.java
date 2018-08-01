@@ -76,7 +76,7 @@ public final class GitLabSCMPublishAction extends InvisibleAction implements Ser
         if (build instanceof WorkflowRun && mode == stages) {
             attachGraphListener((WorkflowRun) build, new GitLabSCMGraphListener(build, metadata));
         } else if (mode == result) {
-            String context = Messages.GitLabSCMPublishAction_DefaultContext(build.getNumber());
+            String context = Messages.GitLabSCMPublishAction_DefaultContext();
             build.addAction(new RunningContextsAction(context));
             publishBuildStatus(build, metadata, running, context, description);
         }
