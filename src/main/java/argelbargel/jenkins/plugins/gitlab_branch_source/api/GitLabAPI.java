@@ -303,8 +303,15 @@ public final class GitLabAPI {
 
 
     private String projectUrl(GitLabProjectSelector selector, GitLabProjectVisibility visibility, String searchPattern) {
-        StringBuilder urlBuilder = new StringBuilder(GitlabProject.URL)
-                .append(PATH_SEP).append(selector.id()).append("?membership=true");
+        StringBuilder urlBuilder = new StringBuilder(GitlabProject.URL).append("?membership=true");
+
+        if(GitLabProjectSelector.OWNED.equals(selector)) {
+            urlBuilder.append("&owned=true");
+        }
+
+        if(GitLabProjectSelector.STARRED.equals(selector)) {
+            urlBuilder.append("&starred=true");
+        }
 
         if (!ALL.equals(visibility)) {
             urlBuilder.append("&visibility=").append(visibility.id());

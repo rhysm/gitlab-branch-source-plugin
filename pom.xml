@@ -19,7 +19,7 @@
 
 	<groupId>argelbargel.jenkins.plugins</groupId>
 	<artifactId>gitlab-branch-source</artifactId>
-	<version>DEV-SNAPSHOT</version>
+	<version>0.6.7</version>
 
 	<packaging>hpi</packaging>
 	<name>GitLab Branch Source Plugin</name>
