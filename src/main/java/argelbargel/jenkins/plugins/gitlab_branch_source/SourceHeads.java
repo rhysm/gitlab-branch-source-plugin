@@ -234,7 +234,7 @@ class SourceHeads {
         String targetBranch = mergeRequest.getTargetBranch();
         GitLabSCMMergeRequestHead head = createMergeRequest(
                 mergeRequest.getId(),
-                mergeRequest.getTitle(),
+                mergeRequest.getSourceBranch(),
                 mergeRequest.getIid(),
                 createBranch(mergeRequest.getSourceProjectId(), mergeRequest.getSourceBranch(), mergeRequest.getSha()),
                 createBranch(mergeRequest.getTargetProjectId(), targetBranch, retrieveBranchRevision(targetBranch)), Objects.equals(mergeRequest.getMergeStatus(), CAN_BE_MERGED));
