@@ -176,7 +176,12 @@ class SourceHeads {
                 checkInterrupt();
 
                 if (!source.isExcluded(mr.getTargetBranch())) {
-                    observe(criteria, observer, mr, listener);
+                    try {
+                        observe(criteria, observer, mr, listener);
+                    } catch (NoSuchElementException e) {
+                        log(listener, Messages.GitLabSCMSource_removedMergeRequest(mr.getId()));
+                        branchesWithMergeRequests(listener).remove(mr.getId());
+                    }
                 }
             }
         }
